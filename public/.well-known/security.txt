@@ -1,0 +1,3 @@
+Contact: mailto:hello@studiovoid.cz
+Preferred-Languages: cs, en
+Canonical: https://studiovoid.cz/.well-known/security.txt

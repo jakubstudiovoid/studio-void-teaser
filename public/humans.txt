@@ -1,0 +1,11 @@
+/* TEAM */
+Studio: STUDIO VOID
+Location: Jablonec nad Nisou, Česko
+Contact: hello@studiovoid.cz
+Instagram: instagram.com/studiovoid.cz
+Facebook: facebook.com/grafickestudiovoid
+
+/* SITE */
+Last update: 2026/09
+Standards: HTML5, CSS, Schema.org
+Language: Czech
