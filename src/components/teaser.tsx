@@ -58,23 +58,23 @@ export function Teaser() {
           <span>VOID</span>
         </h1>
         <p className="kicker">{site.tagline}</p>
-        <nav className="social" aria-label="Sociální sítě">
-          <a
-            href={site.social.instagram.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {site.social.instagram.label}
-          </a>
-          <a
-            href={site.social.facebook.href}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {site.social.facebook.label}
-          </a>
-        </nav>
       </div>
+      <nav className="social" aria-label="Sociální sítě">
+        <a
+          href={site.social.instagram.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {site.social.instagram.label}
+        </a>
+        <a
+          href={site.social.facebook.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {site.social.facebook.label}
+        </a>
+      </nav>
     </main>
   );
 }
