@@ -6,9 +6,9 @@
   --font-display: "Sora Variable", "Sora", ui-sans-serif, system-ui, sans-serif;
 
   --color-bg: #000000;
-  --color-fg: #eceae4;
-  --color-muted: #7a7872;
-  --color-subtle: #4a4946;
+  --color-fg: #f2eee6;
+  --color-muted: #8a8478;
+  --color-subtle: #524e47;
 
   --text-2xs: 0.6875rem;
   --text-xs: 0.75rem;
@@ -87,6 +87,11 @@
 }
 
 .teaser {
+  --mx: 50vw;
+  --my: 46vh;
+  --lx: 50%;
+  --ly: 46%;
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 100svh;
@@ -100,7 +105,27 @@
   user-select: none;
 }
 
+.lamp {
+  position: fixed;
+  left: var(--mx);
+  top: var(--my);
+  z-index: 1;
+  width: min(96vw, 54rem);
+  height: min(96vw, 54rem);
+  translate: -50% -50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgb(242 238 230 / 0.055) 0%,
+    rgb(242 238 230 / 0.02) 26%,
+    transparent 62%
+  );
+  opacity: 0;
+}
+
 .lockup {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -109,35 +134,68 @@
   text-align: center;
 }
 
+.mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.mark-lit {
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--color-fg);
+  -webkit-mask-image: radial-gradient(
+    ellipse 20rem 15rem at var(--lx) var(--ly),
+    #000 0%,
+    #000 22%,
+    rgb(0 0 0 / 0.42) 50%,
+    transparent 74%
+  );
+  mask-image: radial-gradient(
+    ellipse 20rem 15rem at var(--lx) var(--ly),
+    #000 0%,
+    #000 22%,
+    rgb(0 0 0 / 0.42) 50%,
+    transparent 74%
+  );
+}
+
+.mark-ghost .wordmark {
+  color: #1c1914;
+}
+
+.mark-ghost .kicker {
+  color: #161410;
+}
+
+.mark-lit .kicker {
+  color: var(--color-muted);
+}
+
 .wordmark {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
-  font-size: clamp(2.35rem, 8.2vw, 3.85rem);
+  font-size: clamp(2.85rem, 12vw, 5.1rem);
   font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--color-fg);
-}
-
-@media (min-width: 768px) {
-  .wordmark {
-    flex-direction: row;
-    gap: 0.38em;
-    font-size: clamp(2.85rem, 5.2vw, 4.15rem);
-  }
+  line-height: 0.94;
+  letter-spacing: -0.025em;
 }
 
 .kicker {
-  margin: 1.1rem 0 0;
+  margin: 0.8rem 0 0;
   font-size: clamp(0.875rem, 1.4vw, 1rem);
   font-weight: 400;
   letter-spacing: 0.06em;
-  color: var(--color-muted);
 }
 
 .social {
+  position: relative;
+  z-index: 3;
   display: flex;
   justify-content: center;
   gap: 2rem;
@@ -161,9 +219,14 @@
 
 .wordmark,
 .kicker,
-.social {
+.social,
+.lamp {
   opacity: 0;
   transform: translate3d(0, 12px, 0);
+}
+
+.lamp {
+  transform: translate(-50%, -50%);
 }
 
 .teaser[data-stage="idle"] .wordmark {
@@ -171,7 +234,11 @@
 }
 
 .teaser[data-stage="idle"] .kicker {
-  animation: fade-up 2.6s var(--ease-luxury) 1.05s both;
+  animation: fade-up 2.6s var(--ease-luxury) 0.9s both;
+}
+
+.teaser[data-stage="idle"] .lamp {
+  animation: lamp-in 2.8s var(--ease-luxury) 0.35s both;
 }
 
 .teaser[data-stage="idle"] .social {
@@ -180,7 +247,8 @@
 
 .teaser.is-instant .wordmark,
 .teaser.is-instant .kicker,
-.teaser.is-instant .social {
+.teaser.is-instant .social,
+.teaser.is-instant .lamp {
   animation-duration: 0.7s;
   animation-delay: 0s;
 }
@@ -202,13 +270,40 @@
   }
 }
 
+@keyframes lamp-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.teaser.is-still .mark-ghost .wordmark {
+  color: var(--color-fg);
+}
+
+.teaser.is-still .mark-ghost .kicker {
+  color: var(--color-muted);
+}
+
+.teaser.is-still .mark-lit,
+.teaser.is-still .lamp {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wordmark,
   .kicker,
-  .social {
+  .social,
+  .lamp {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .lamp {
+    transform: translate(-50%, -50%);
   }
 
   .social a {
