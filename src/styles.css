@@ -1,14 +1,9 @@
 @import "tailwindcss";
-@import "@fontsource-variable/instrument-sans/wght.css";
-@import "@fontsource/instrument-serif/latin-ext-400-italic.css";
-@import "@fontsource/instrument-serif/latin-400-italic.css";
+@import "@fontsource-variable/sora/wght.css";
 
 @theme {
-  --font-sans: "Instrument Sans Variable", "Instrument Sans", ui-sans-serif, system-ui,
-    sans-serif;
-  --font-display: "Instrument Sans Variable", "Instrument Sans", ui-sans-serif, system-ui,
-    sans-serif;
-  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Sora Variable", "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora Variable", "Sora", ui-sans-serif, system-ui, sans-serif;
 
   --color-bg: #000000;
   --color-fg: #eceae4;
@@ -77,7 +72,7 @@
     text-wrap: balance;
     font-family: var(--font-display);
     font-weight: 400;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     line-height: 1.05;
   }
 
@@ -119,7 +114,7 @@
   font-size: clamp(2.75rem, 9vw, 5.25rem);
   font-weight: 400;
   line-height: 0.92;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.03em;
   color: var(--color-fg);
 }
 
@@ -133,11 +128,9 @@
 
 .kicker {
   margin: 1.35rem 0 0;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-size: 0.8125rem;
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.08em;
   color: var(--color-muted);
 }
 
@@ -149,7 +142,7 @@
 
 .social a {
   font-size: var(--text-2xs);
-  font-weight: 450;
+  font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-subtle);
