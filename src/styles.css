@@ -187,6 +187,8 @@
 }
 
 .logo-slot {
+  position: relative;
+  left: -0.45rem;
   width: clamp(11.3rem, 32vw, 19.8rem);
   aspect-ratio: 1100 / 814;
   background-color: #1c1914;
