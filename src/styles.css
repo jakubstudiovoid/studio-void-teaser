@@ -148,18 +148,18 @@
   pointer-events: none;
   color: var(--color-fg);
   -webkit-mask-image: radial-gradient(
-    ellipse 20rem 15rem at var(--lx) var(--ly),
+    ellipse 28rem 22rem at var(--lx) var(--ly),
     #000 0%,
-    #000 22%,
-    rgb(0 0 0 / 0.42) 50%,
-    transparent 74%
+    #000 28%,
+    rgb(0 0 0 / 0.5) 55%,
+    transparent 78%
   );
   mask-image: radial-gradient(
-    ellipse 20rem 15rem at var(--lx) var(--ly),
+    ellipse 28rem 22rem at var(--lx) var(--ly),
     #000 0%,
-    #000 22%,
-    rgb(0 0 0 / 0.42) 50%,
-    transparent 74%
+    #000 28%,
+    rgb(0 0 0 / 0.5) 55%,
+    transparent 78%
   );
 }
 
@@ -189,17 +189,22 @@
 .logo-slot {
   width: clamp(11.3rem, 32vw, 19.8rem);
   aspect-ratio: 1100 / 814;
-  line-height: 0;
+  background-color: #1c1914;
+  -webkit-mask-image: url("./assets/studio-void-mark.png");
+  mask-image: url("./assets/studio-void-mark.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
 }
 
-.logo-slot canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-  pointer-events: none;
-  -webkit-user-drag: none;
+.mark-lit .logo-slot,
+.teaser.is-still .mark-ghost .logo-slot {
+  background-color: #f2eee6;
 }
 
 .sr-only {
