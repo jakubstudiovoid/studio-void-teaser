@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import markUrl from "@/assets/studio-void-mark.png";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -6,14 +7,68 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-function LockupCopy({ heading }: { heading?: boolean }) {
-  const Title = heading ? "h1" : "p";
+function LogoMark({ color }: { color: string }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const canvas = canvasRef.current;
+    if (!wrap || !canvas) return;
+
+    let dead = false;
+    const img = new Image();
+    img.decoding = "async";
+    img.src = markUrl;
+
+    const paint = () => {
+      if (dead || !img.complete || !img.naturalWidth) return;
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      const width = wrap.clientWidth;
+      const height = wrap.clientHeight;
+      if (!width || !height) return;
+      const bitmapWidth = Math.round(width * dpr);
+      const bitmapHeight = Math.round(height * dpr);
+      if (canvas.width !== bitmapWidth || canvas.height !== bitmapHeight) {
+        canvas.width = bitmapWidth;
+        canvas.height = bitmapHeight;
+      }
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      ctx.clearRect(0, 0, bitmapWidth, bitmapHeight);
+      ctx.drawImage(img, 0, 0, bitmapWidth, bitmapHeight);
+      ctx.globalCompositeOperation = "source-in";
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, bitmapWidth, bitmapHeight);
+    };
+
+    img.onload = paint;
+    const observer = new ResizeObserver(paint);
+    observer.observe(wrap);
+    return () => {
+      dead = true;
+      observer.disconnect();
+    };
+  }, [color]);
+
+  return (
+    <div className="wordmark logo-slot" ref={wrapRef} aria-hidden>
+      <canvas ref={canvasRef} draggable={false} />
+    </div>
+  );
+}
+
+function LockupCopy({
+  heading,
+  ink,
+}: {
+  heading?: boolean;
+  ink: string;
+}) {
   return (
     <>
-      <Title className="wordmark">
-        <span>STUDIO</span>
-        <span>VOID</span>
-      </Title>
+      {heading ? <h1 className="sr-only">STUDIO VOID</h1> : null}
+      <LogoMark color={ink} />
       <p className="kicker">{site.tagline}</p>
     </>
   );
@@ -118,11 +173,15 @@ export function Teaser() {
     };
   }, [still]);
 
+  const ghostInk = still ? "#f2eee6" : "#1c1914";
+
   return (
     <main
       ref={rootRef}
       className={cn("teaser", instant && "is-instant", still && "is-still")}
       data-stage={ready ? "idle" : "boot"}
+      onContextMenu={(event) => event.preventDefault()}
+      onDragStart={(event) => event.preventDefault()}
       onClick={(event) => {
         if (event.target instanceof Element && event.target.closest("a")) return;
         finish();
@@ -131,10 +190,10 @@ export function Teaser() {
       <div className="lamp" aria-hidden />
       <div className="lockup" ref={lockupRef}>
         <div className="mark mark-ghost">
-          <LockupCopy heading />
+          <LockupCopy heading ink={ghostInk} />
         </div>
         <div className="mark mark-lit" aria-hidden>
-          <LockupCopy />
+          <LockupCopy ink="#f2eee6" />
         </div>
       </div>
       <nav className="social" aria-label="Sociální sítě">

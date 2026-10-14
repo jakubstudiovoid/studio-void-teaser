@@ -186,6 +186,34 @@
   letter-spacing: -0.025em;
 }
 
+.logo-slot {
+  width: clamp(11.3rem, 32vw, 19.8rem);
+  aspect-ratio: 1100 / 814;
+  line-height: 0;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+.logo-slot canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .kicker {
   margin: 0.8rem 0 0;
   font-size: clamp(0.875rem, 1.4vw, 1rem);
