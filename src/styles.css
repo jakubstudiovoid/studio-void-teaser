@@ -116,9 +116,9 @@
   pointer-events: none;
   background: radial-gradient(
     circle,
-    rgb(242 238 230 / 0.055) 0%,
-    rgb(242 238 230 / 0.02) 26%,
-    transparent 62%
+    rgb(255 92 156 / 0.18) 0%,
+    rgb(255 70 150 / 0.07) 28%,
+    transparent 64%
   );
   opacity: 0;
 }
@@ -134,45 +134,48 @@
   text-align: center;
 }
 
-.mark {
+.scene {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  min-height: 0;
 }
 
-.mark-lit {
+.scene-lit {
   position: absolute;
   inset: 0;
-  justify-content: center;
+  z-index: 4;
+  flex: none;
   pointer-events: none;
-  color: var(--color-fg);
+  color: #ff5c9c;
   -webkit-mask-image: radial-gradient(
-    ellipse 20rem 15rem at var(--lx) var(--ly),
+    ellipse 22rem 16rem at var(--lx) var(--ly),
     #000 0%,
-    #000 22%,
-    rgb(0 0 0 / 0.42) 50%,
-    transparent 74%
+    #000 20%,
+    rgb(0 0 0 / 0.45) 48%,
+    transparent 72%
   );
   mask-image: radial-gradient(
-    ellipse 20rem 15rem at var(--lx) var(--ly),
+    ellipse 22rem 16rem at var(--lx) var(--ly),
     #000 0%,
-    #000 22%,
-    rgb(0 0 0 / 0.42) 50%,
-    transparent 74%
+    #000 20%,
+    rgb(0 0 0 / 0.45) 48%,
+    transparent 72%
   );
 }
 
-.mark-ghost .wordmark {
+.scene-ghost .wordmark {
   color: #1c1914;
 }
 
-.mark-ghost .kicker {
+.scene-ghost .kicker {
   color: #161410;
 }
 
-.mark-lit .kicker {
-  color: var(--color-muted);
+.scene-lit .wordmark,
+.scene-lit .kicker,
+.scene-lit .social a {
+  color: #ff5c9c;
 }
 
 .wordmark {
@@ -279,15 +282,15 @@
   }
 }
 
-.teaser.is-still .mark-ghost .wordmark {
+.teaser.is-still .scene-ghost .wordmark {
   color: var(--color-fg);
 }
 
-.teaser.is-still .mark-ghost .kicker {
+.teaser.is-still .scene-ghost .kicker {
   color: var(--color-muted);
 }
 
-.teaser.is-still .mark-lit,
+.teaser.is-still .scene-lit,
 .teaser.is-still .lamp {
   display: none;
 }

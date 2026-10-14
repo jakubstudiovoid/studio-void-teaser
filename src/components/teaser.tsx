@@ -19,6 +19,34 @@ function LockupCopy({ heading }: { heading?: boolean }) {
   );
 }
 
+function Scene({ heading }: { heading?: boolean }) {
+  return (
+    <>
+      <div className="lockup">
+        <div className="mark">
+          <LockupCopy heading={heading} />
+        </div>
+      </div>
+      <nav className="social" aria-label={heading ? "Sociální sítě" : undefined}>
+        <a
+          href={site.social.instagram.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {site.social.instagram.label}
+        </a>
+        <a
+          href={site.social.facebook.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {site.social.facebook.label}
+        </a>
+      </nav>
+    </>
+  );
+}
+
 export function Teaser() {
   const rootRef = useRef<HTMLElement>(null);
   const lockupRef = useRef<HTMLDivElement>(null);
@@ -104,10 +132,12 @@ export function Teaser() {
       ptr.x += (ptr.tx - ptr.x) * 0.06;
       ptr.y += (ptr.ty - ptr.y) * 0.06;
       const box = lockup.getBoundingClientRect();
+      const lit = root.querySelector(".scene-lit");
+      const litBox = lit?.getBoundingClientRect() ?? box;
       root.style.setProperty("--mx", `${ptr.x.toFixed(1)}px`);
       root.style.setProperty("--my", `${ptr.y.toFixed(1)}px`);
-      root.style.setProperty("--lx", `${(ptr.x - box.left).toFixed(1)}px`);
-      root.style.setProperty("--ly", `${(ptr.y - box.top).toFixed(1)}px`);
+      root.style.setProperty("--lx", `${(ptr.x - litBox.left).toFixed(1)}px`);
+      root.style.setProperty("--ly", `${(ptr.y - litBox.top).toFixed(1)}px`);
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -129,30 +159,12 @@ export function Teaser() {
       }}
     >
       <div className="lamp" aria-hidden />
-      <div className="lockup" ref={lockupRef}>
-        <div className="mark mark-ghost">
-          <LockupCopy heading />
-        </div>
-        <div className="mark mark-lit" aria-hidden>
-          <LockupCopy />
-        </div>
+      <div className="scene scene-ghost" ref={lockupRef}>
+        <Scene heading />
       </div>
-      <nav className="social" aria-label="Sociální sítě">
-        <a
-          href={site.social.instagram.href}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {site.social.instagram.label}
-        </a>
-        <a
-          href={site.social.facebook.href}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {site.social.facebook.label}
-        </a>
-      </nav>
+      <div className="scene scene-lit" aria-hidden inert>
+        <Scene />
+      </div>
     </main>
   );
 }
