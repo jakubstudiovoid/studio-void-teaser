@@ -118,7 +118,7 @@
 
 .logo-slot {
   width: clamp(13.9rem, 39.5vw, 24.4rem);
-  aspect-ratio: 1726 / 1147;
+  aspect-ratio: 1600 / 1198;
   background-color: #f2eee6;
   -webkit-mask-image: url("./assets/studio-void-mark.png");
   mask-image: url("./assets/studio-void-mark.png");
