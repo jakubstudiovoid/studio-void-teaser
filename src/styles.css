@@ -190,7 +190,7 @@
   position: relative;
   left: -0.45rem;
   width: clamp(11.3rem, 32vw, 19.8rem);
-  aspect-ratio: 1100 / 814;
+  aspect-ratio: 1400 / 964;
   background-color: #1c1914;
   -webkit-mask-image: url("./assets/studio-void-mark.png");
   mask-image: url("./assets/studio-void-mark.png");
