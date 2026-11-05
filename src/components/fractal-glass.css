@@ -1,0 +1,59 @@
+.fractal-glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  aspect-ratio: 1.5;
+  background: #dbe0e5;
+}
+.fractal-glass:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.fractal-glass-image,
+.fractal-glass-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.fractal-glass-image {
+  object-fit: cover;
+}
+.fractal-glass-canvas {
+  opacity: 0;
+}
+.fractal-glass[data-renderer='webgl'] .fractal-glass-canvas {
+  opacity: 1;
+}
+.fractal-glass-content {
+  position: relative;
+  z-index: 1;
+}
+
+.fractal-glass[data-animate-entrance='true'] > .fractal-glass-image {
+  opacity: 0;
+}
+.fractal-glass[data-animate-entrance='true'][data-image-ready='true'] > .fractal-glass-image,
+.fractal-glass[data-animate-entrance='true'][data-renderer='webgl'] > .fractal-glass-canvas {
+  opacity: 1;
+  animation: fractal-glass-enter 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes fractal-glass-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fractal-glass[data-animate-entrance='true'] > .fractal-glass-image,
+  .fractal-glass[data-animate-entrance='true'] > .fractal-glass-canvas {
+    animation: none;
+  }
+}

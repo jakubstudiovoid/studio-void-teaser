@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { LiquidGlassLogo } from "@/components/liquid-glass-logo";
+import { FractalGlass } from "@/components/fractal-glass";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -57,31 +57,26 @@ export function Teaser() {
     >
       <div className="lockup">
         <h1 className="sr-only">STUDIO VOID</h1>
-        <LiquidGlassLogo
-          logo="/studio-void-mark.png"
-          ending="logo"
-          logoSize={216}
-          logoScale={0.92}
-          finalLogoScale={1}
-          logoColor="#f3eee6"
-          logoRelief={0.22}
-          tileColor="#090908"
-          background="#000000"
-          depth={1.35}
-          dispersion={0.62}
-          relief={0.48}
-          caustics={0.9}
-          highlights={0.78}
-          bloom={0.38}
-          echoTint={0.22}
-          dropSize={0.28}
-          dropStrength={0.94}
-          innerWallFocus={0.62}
-          decay={2.1}
-          speed={0.55}
-          loop={false}
-          aria-label="STUDIO VOID"
-          style={{ height: 480 }}
+        <FractalGlass
+          src="/studio-void-mark.png"
+          alt="STUDIO VOID"
+          coverage={0.5}
+          stripes={16}
+          distortion={12}
+          blur={4}
+          reflection={0.55}
+          dispersion={0.16}
+          grain={0.002}
+          direction="vertical"
+          side="left"
+          hoverEffect
+          hoverPreset="reveal-on-hover"
+          animateEntrance
+          style={{
+            width: "min(86vw, 36rem)",
+            aspectRatio: "1600 / 1142",
+            background: "#000",
+          }}
         />
         <p className="kicker">{site.tagline}</p>
       </div>
