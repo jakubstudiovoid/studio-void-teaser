@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { LiquidGlassLogo } from "@/components/liquid-glass-logo";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -56,7 +57,23 @@ export function Teaser() {
     >
       <div className="lockup">
         <h1 className="sr-only">STUDIO VOID</h1>
-        <div className="wordmark logo-slot" aria-hidden />
+        <LiquidGlassLogo
+          logo="/studio-void-mark.png"
+          ending="logo"
+          logoSize={216}
+          logoScale={1}
+          depth={1.1}
+          dispersion={0.8}
+          relief={0}
+          caustics={1.7}
+          highlights={0}
+          dropStrength={0.8}
+          innerWallFocus={0.35}
+          speed={0.1}
+          loop={true}
+          aria-label="STUDIO VOID"
+          style={{ height: 480 }}
+        />
         <p className="kicker">{site.tagline}</p>
       </div>
       <nav className="social" aria-label="Sociální sítě">
