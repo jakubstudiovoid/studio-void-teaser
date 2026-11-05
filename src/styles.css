@@ -112,6 +112,28 @@
   text-align: center;
 }
 
+.wordmark {
+  margin: 0;
+}
+
+.logo-slot {
+  width: clamp(13.9rem, 39.5vw, 24.4rem);
+  aspect-ratio: 1600 / 1142;
+  background-color: #f2eee6;
+  -webkit-mask-image: url("./assets/studio-void-mark.png");
+  mask-image: url("./assets/studio-void-mark.png");
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
 .kicker {
   margin: 1.15rem 0 0;
   font-size: clamp(0.875rem, 1.4vw, 1rem);
@@ -156,20 +178,26 @@
   color: var(--color-fg);
 }
 
+.wordmark,
 .kicker,
 .social {
   opacity: 0;
   transform: translate3d(0, 12px, 0);
 }
 
+.teaser[data-stage="idle"] .wordmark {
+  animation: fade-up 3.2s var(--ease-luxury) 0.2s both;
+}
+
 .teaser[data-stage="idle"] .kicker {
-  animation: fade-up 2.4s var(--ease-luxury) 0.7s both;
+  animation: fade-up 2.6s var(--ease-luxury) 0.9s both;
 }
 
 .teaser[data-stage="idle"] .social {
-  animation: fade-up 2.2s var(--ease-luxury) 1.5s both;
+  animation: fade-up 2.4s var(--ease-luxury) 1.7s both;
 }
 
+.teaser.is-instant .wordmark,
 .teaser.is-instant .kicker,
 .teaser.is-instant .social {
   animation-duration: 0.7s;
@@ -194,6 +222,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .wordmark,
   .kicker,
   .social {
     animation: none !important;

@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { FractalGlass } from "@/components/fractal-glass";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -57,27 +56,7 @@ export function Teaser() {
     >
       <div className="lockup">
         <h1 className="sr-only">STUDIO VOID</h1>
-        <FractalGlass
-          src="/studio-void-mark.png"
-          alt="STUDIO VOID"
-          coverage={0.5}
-          stripes={16}
-          distortion={12}
-          blur={4}
-          reflection={0.55}
-          dispersion={0.16}
-          grain={0.002}
-          direction="vertical"
-          side="left"
-          hoverEffect
-          hoverPreset="reveal-on-hover"
-          animateEntrance
-          style={{
-            width: "min(86vw, 36rem)",
-            aspectRatio: "1600 / 1142",
-            background: "#000",
-          }}
-        />
+        <div className="wordmark logo-slot" aria-hidden />
         <p className="kicker">{site.tagline}</p>
       </div>
       <nav className="social" aria-label="Sociální sítě">
