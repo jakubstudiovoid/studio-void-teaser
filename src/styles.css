@@ -163,11 +163,11 @@
 }
 
 .teaser[data-stage="idle"] .kicker {
-  animation: fade-up 2.6s var(--ease-luxury) 0.9s both;
+  animation: fade-up 2.4s var(--ease-luxury) 2.2s both;
 }
 
 .teaser[data-stage="idle"] .social {
-  animation: fade-up 2.4s var(--ease-luxury) 1.7s both;
+  animation: fade-up 2.2s var(--ease-luxury) 3s both;
 }
 
 .teaser.is-instant .kicker,
